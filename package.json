@@ -1,0 +1,11 @@
+{
+	"name": "spotifytools",
+	"version": "0.0.0",
+	"license": "MIT",
+	"main": "src/index.js",
+	"dependencies": {
+		"dotenv": "^5.0.1",
+		"express": "^4.16.3",
+		"spotify-web-api-node": "^3.1.1"
+	}
+}
