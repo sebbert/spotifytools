@@ -4,11 +4,9 @@ const routes = require("./routes");
 const path = require("path");
 const env = require("./env");
 const session = require('express-session');
-const passport = require("passport");
+const passport = require("./passport");
 const mongoose = require("mongoose");
 
-passport.serializeUser((user, callback) => callback(null, user));
-passport.deserializeUser((user, callback) => callback(null, user));
 
 app.set("views", "src/views");
 app.set("view engine", "pug");
