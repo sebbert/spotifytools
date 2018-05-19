@@ -43,7 +43,12 @@ passport.use(spotifyStrategy);
 router.get("/spotify",
 	passport.authenticate("spotify", {
 		scopes: [
-			""
+			"playlist-modify-public",
+			"playlist-modify-private",
+			"user-library-read",
+			"user-read-private",
+			"user-read-recently-played",
+			"user-top-read",
 		],
 		successRedirect: "/",
 		failureRedirect: "/auth/spotify"
