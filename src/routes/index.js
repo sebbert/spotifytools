@@ -10,6 +10,7 @@ router.get("/",
 	}
 );
 
+router.use("/static", require("./static"));
 router.use("/auth", require("./auth"));
 router.use("/me", require("./me"));
 
