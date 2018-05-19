@@ -3,6 +3,7 @@ const T = mg.Schema.Types;
 
 const UserSchema = mg.Schema({
 	spotifyId: T.String,
+	spotifyProfile: T.Mixed,
 	spotifyToken: mg.Schema({
 		accessToken: T.String,
 		refreshToken: T.String,

@@ -19,7 +19,7 @@ const spotifyStrategy = new SpotifyStrategy(
 		clientSecret: env.require("SPOTIFY_CLIENT_SECRET"),
 		callbackURL: env.require("SPOTIFY_REDIRECT_URI"),
 	},
-	async (accessToken, refreshToken, expiresIn, profile, done) => {
+	async (accessToken, refreshToken, expiresIn, spotifyProfile, done) => {
 		const expiresAt = new Date();
 		expiresAt.setSeconds(expiresAt.getSeconds() + expiresIn);
 		const spotifyToken = {
@@ -28,14 +28,15 @@ const spotifyStrategy = new SpotifyStrategy(
 			expiresAt
 		};
 		try {
-			let user = await User.findOne({ spotifyId: profile.id });
+			let user = await User.findOne({ spotifyId: spotifyProfile.id });
 			if(user) {
-				await user.update({ spotifyToken });
+				await user.update({ spotifyToken, spotifyProfile });
 			}
 			else {
 				user = await User.create({
-					spotifyId: profile.id,
-					spotifyToken
+					spotifyId: spotifyProfile.id,
+					spotifyProfile,
+					spotifyToken,
 				});
 			}
 
