@@ -3,9 +3,16 @@
 	"version": "0.0.0",
 	"license": "MIT",
 	"main": "src/index.js",
+	"scripts": {
+		"start": "node .",
+		"watch": "nodemon ."
+	},
 	"dependencies": {
 		"dotenv": "^5.0.1",
 		"express": "^4.16.3",
 		"spotify-web-api-node": "^3.1.1"
+	},
+	"devDependencies": {
+		"nodemon": "^1.17.4"
 	}
 }
