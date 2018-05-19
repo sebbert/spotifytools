@@ -11,15 +11,42 @@ const spotifyStrategy = new SpotifyStrategy(
 		clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
 		callbackURL: process.env.SPOTIFY_REDIRECT_URI,
 	},
-	(accessToken, refreshToken, expiresIn, profile, doneCallback) => {
-		
+	async (accessToken, refreshToken, expiresIn, profile, doneCallback) => {
+		const spotifyToken = {
+			accessToken,
+			refreshToken,
+			expiresIn
+		};
+		try {
+			let user = await User.findOne({ spotifyId: profile.id });
+			if(user) {
+				await user.update({ spotifyToken });
+			}
+			else {
+				user = await User.create({
+					spotifyId: profile.id,
+					spotifyToken
+				});
+			}
+
+			done(undefined, user);
+		}
+		catch(err) {
+			done(err, undefined);
+		}
 	}
 );
 
 passport.use(spotifyStrategy);
 
 router.get("/spotify",
-	passport.authenticate
+	passport.authenticate("spotify", {
+		scopes: [
+			""
+		],
+		successRedirect: "/",
+		failureRedirect: "/auth/spotify"
+	})
 );
 
 router.get("/spotify-callback", (req, res) => {

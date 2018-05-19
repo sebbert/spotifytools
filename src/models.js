@@ -1,16 +1,16 @@
-const {Schema, model} = require("mongoose");
-const T = Schema.Types;
+const mg = require("mongoose");
+const T = mg.Schema.Types;
 
-const UserSchema = Schema({
-	spotify: Schema({
-		id: T.String,
+const UserSchema = mg.Schema({
+	spotifyId: T.String,
+	spotifyToken: mg.Schema({
 		accessToken: T.String,
 		refreshToken: T.String,
 		expiresIn: T.Date,
 	})
 });
 
-const User = model("User", UserSchema);
+const User = mg.model("User", UserSchema);
 
 module.exports = {
 	User,
