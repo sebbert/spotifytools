@@ -1,6 +1,3 @@
-const auth = require("./auth");
-const me = require("./me");
-
 const express = require("express");
 const router = express.Router();
 
@@ -13,7 +10,7 @@ router.get("/",
 	}
 );
 
-router.use("/auth", auth);
-router.use("/me", me);
+router.use("/auth", require("./auth"));
+router.use("/me", require("./me"));
 
 module.exports = router;
