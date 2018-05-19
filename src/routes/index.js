@@ -1,12 +1,19 @@
 const auth = require("./auth");
+const me = require("./me");
 
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-	res.render("index");
-});
+const {ensureLoggedOut} = require("connect-ensure-login");
+
+router.get("/",
+	ensureLoggedOut("/me"),
+	(req, res) => {
+		res.render("index")
+	}
+);
 
 router.use("/auth", auth);
+router.use("/me", me);
 
 module.exports = router;

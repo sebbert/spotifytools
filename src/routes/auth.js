@@ -1,5 +1,5 @@
 const express = require("express");
-const router = module.exports = express.Router();
+const router = express.Router();
 const passport = require("passport");
 const {Strategy: SpotifyStrategy} = require("passport-spotify");
 const env = require("../env");
@@ -12,11 +12,13 @@ const spotifyStrategy = new SpotifyStrategy(
 		clientSecret: env.require("SPOTIFY_CLIENT_SECRET"),
 		callbackURL: env.require("SPOTIFY_REDIRECT_URI"),
 	},
-	async (accessToken, refreshToken, expiresIn, profile, doneCallback) => {
+	async (accessToken, refreshToken, expiresIn, profile, done) => {
+		const expiresAt = new Date();
+		expiresAt.setSeconds(expiresAt.getSeconds() + expiresIn);
 		const spotifyToken = {
 			accessToken,
 			refreshToken,
-			expiresIn
+			expiresAt
 		};
 		try {
 			let user = await User.findOne({ spotifyId: profile.id });
@@ -42,19 +44,20 @@ passport.use(spotifyStrategy);
 
 router.get("/spotify",
 	passport.authenticate("spotify", {
-		scopes: [
+		scope: [
 			"playlist-modify-public",
 			"playlist-modify-private",
 			"user-library-read",
 			"user-read-private",
 			"user-read-recently-played",
 			"user-top-read",
-		],
-		successRedirect: "/",
-		failureRedirect: "/auth/spotify"
+		]
 	})
 );
 
-router.get("/spotify-callback", (req, res) => {
-	
-});
+router.get("/spotify-callback",
+	passport.authenticate("spotify", { failureRedirect: "/" }),
+	(req, res) => res.redirect("/me")
+);
+
+module.exports = router;

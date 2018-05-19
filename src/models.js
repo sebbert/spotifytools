@@ -6,7 +6,7 @@ const UserSchema = mg.Schema({
 	spotifyToken: mg.Schema({
 		accessToken: T.String,
 		refreshToken: T.String,
-		expiresIn: T.Date,
+		expiresAt: T.Date,
 	})
 });
 
