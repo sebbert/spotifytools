@@ -5,7 +5,6 @@ const {ensureLoggedIn} = require("connect-ensure-login");
 router.use(ensureLoggedIn("/"));
 
 router.get("/", (req, res) => {
-	console.log(req.user);
 	res.render("me/index");
 });
 
