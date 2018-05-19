@@ -1,8 +1,7 @@
 const express = require("express");
 const app = express();
+const applyRoutes = require("./routes");
 
-app.get("/", (req, res) => {
-	res.end("foo");
-});
+applyRoutes(app);
 
 module.exports = app;

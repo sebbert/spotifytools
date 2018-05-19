@@ -1,11 +1,19 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-const app = require("./app");
+const connectDb = require("./connect-db");
 
-const hostname = process.env.SPOTIFYTOOLS_HOSTNAME;
-const port = process.env.SPOTIFYTOOLS_PORT;
+connectDb().then(() => {
+	const app = require("./app");
 
-app.listen(port, hostname, () => {
-	console.log(`Listening on ${hostname}:${port}`)
+	const hostname = process.env.SPOTIFYTOOLS_HOSTNAME;
+	const port = process.env.SPOTIFYTOOLS_PORT;
+	
+	app.listen(port, hostname, () => {
+		console.log(`Listening on ${hostname}:${port}`)
+	});
+})
+.catch(err => {
+	console.error("UNHANDLED PROMISE REJECTION\n", err);
+	process.exit(1);
 });
