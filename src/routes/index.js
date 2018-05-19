@@ -1,5 +1,12 @@
 const auth = require("./auth");
 
-module.exports = (app) => {
-	app.use("/auth", auth);
-}
+const express = require("express");
+const router = express.Router();
+
+router.get("/", (req, res) => {
+	app.end("");
+});
+
+router.use("/auth", auth);
+
+module.exports = router;

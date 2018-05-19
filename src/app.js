@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-const applyRoutes = require("./routes");
+const routes = require("./routes");
 
-applyRoutes(app);
+app.use(routes);
 
 module.exports = app;
