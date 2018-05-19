@@ -7,12 +7,10 @@ const passport = new Passport();
 module.exports = passport;
 
 passport.serializeUser((user, callback) => {
-	console.log("SERIALIZE USER", user);
-	return callback(null, user)
+	return callback(undefined, user._id);
 });
-passport.deserializeUser((user, callback) => {
-	console.log("DESERIALIZE USER", user);
-	return callback(null, user)
+passport.deserializeUser((userId, callback) => {
+	User.findOne({ _id: userId }, callback);
 });
 
 const spotifyStrategy = new SpotifyStrategy(
