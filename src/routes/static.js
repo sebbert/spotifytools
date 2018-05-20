@@ -4,8 +4,8 @@ const path = require("path");
 
 const staticPath = path.resolve(__dirname, "..", "static");
 
-function static(urlPath, filePath) {
-	router.use(urlPath, express.static(filePath));
+function static(urlPath, filePath, options=undefined) {
+	router.use(urlPath, express.static(filePath, options));
 }
 
 static("/normalize.css", require.resolve("normalize.css"));
