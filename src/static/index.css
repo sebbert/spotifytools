@@ -8,14 +8,6 @@ body {
 	margin: 0px auto;
 }
 
-.hero {
-	height: 80vh;
-	width: 100%;
-	background: #1DB954;
-	display: flex;
-	flex-direction: column;
-}
-
 .login-button-wrapper {
 	height: 100%;
 	display: flex;
@@ -23,6 +15,9 @@ body {
 	justify-content: space-around;
 }
 .login-button {
+	user-select: none;
+	border: none;
+	background: #1DB954;
 	font-weight: 600;
 	color: #fff;
 	text-decoration: none;
@@ -40,8 +35,9 @@ body {
 	transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.login-button:hover {
+.login-button:hover,.login-button:active {
 	text-decoration: underline;
+	cursor: pointer;
 }
 
 .login-button:active {
@@ -53,13 +49,10 @@ body {
 	height: 100vh;
 }
 
-.sidebar {
-	box-sizing: border-box;
-	flex-basis: 260px;
-	padding: 12px;
-	margin-right: 12px;
+.content {
+	
 }
 
-.content {
-	flex: 1;
+.logout-link {
+	margin-top: 20px;
 }

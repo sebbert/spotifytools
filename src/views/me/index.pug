@@ -1,7 +1,6 @@
 extends ./layout.pug
 
-block sidebar
-	h5 The great sidebar of nothingness
-
 block content
+	a.logout-link(href="/auth/logout") « Log out
+
 	h1 Welcome, #{user.spotifyProfile.displayName || user.spotifyProfile.username}

@@ -1,7 +1,8 @@
 extends layout.pug
 
+block append head
+	script(src="/static/frontpage.js")
+
 block body
-	.hero
-		.container
-		.container.login-button-wrapper
-			a.login-button(href="/auth/spotify") Connect with spotify
+	.container.login-button-wrapper
+		button.login-button(type="button", data-href="/auth/spotify") Connect with spotify
