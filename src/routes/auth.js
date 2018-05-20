@@ -20,4 +20,10 @@ router.get("/spotify-callback",
 	(req, res) => res.redirect("/me")
 );
 
+router.get("/logout", (req, res) => {
+	req.logout();
+	req.session.destroy();
+	res.redirect("/");
+});
+
 module.exports = router;
