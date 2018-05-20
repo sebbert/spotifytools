@@ -1,11 +1,14 @@
-body {
-	font-family: "Montserrat", "Helvetica Neue", "Arial", sans-serif;
-	color: #333;
+html {
+	font-size: 0.6rem;
 }
 
-.container {
-	max-width: 960px;
-	margin: 0px auto;
+body {
+	font-size: 1.5em;
+	/* currently ems cause chrome bug misinterpreting rems on body element */
+	line-height: 1.6;
+	font-weight: 400;
+	font-family: "Montserrat", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #222;
 }
 
 .login-button-wrapper {
@@ -17,18 +20,17 @@ body {
 .login-button {
 	user-select: none;
 	border: none;
-	background: #1DB954;
-	font-weight: 600;
-	color: #fff;
+	font-weight: 900;
+	color: #1DB954;
 	text-decoration: none;
-	font-size: 3em;
-	margin: 0px auto;
+	font-size: 5rem;
+	height: 5rem;
+	margin: inherit auto;
 	text-align: center;
 	
-	vertical-align: middle;
+	display: block;
 
 	box-sizing: border-box;
-	padding: 10px 20px;
 
 	transition-property: transform;
 	transition-duration: .2s;
@@ -44,15 +46,7 @@ body {
 	transform: scale(.6);
 }
 
-.main-layout {
-	display: flex;
-	height: 100vh;
-}
-
-.content {
-	
-}
-
 .logout-link {
-	margin-top: 20px;
+	line-height: 5rem;
 }
+
