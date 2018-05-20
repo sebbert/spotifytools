@@ -4,9 +4,9 @@ const routes = require("./routes");
 const path = require("path");
 const env = require("./env");
 const session = require('express-session');
+const MongoStore = require("connect-mongo")(session);
 const passport = require("./passport");
 const mongoose = require("mongoose");
-
 
 app.set("views", "src/views");
 app.set("view engine", "pug");
@@ -17,8 +17,13 @@ app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(session({
 	secret: env.require("SPOTIFYTOOLS_SESSION_SECRET"),
 	resave: true,
-	saveUninitialized: true
+	saveUninitialized: true,
+	store: new MongoStore({
+		mongooseConnection: mongoose.connection,
+		collection: "sessions",
+	})
 }));
+
 
 app.use(passport.initialize());
 app.use(passport.session());
