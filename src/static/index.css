@@ -30,6 +30,7 @@
 }
 
 .login-button:hover,.login-button:active {
+	outline: none;
 	cursor: pointer;
 	/* background-position-x: 00px; */
 	transform: scale(1.1);
@@ -39,6 +40,7 @@
 }
 
 .login-button:active {
+	outline: none;
 	background: #1DB954;
 	transform: scale(0.9);
 }
