@@ -1,6 +1,15 @@
 extends ../layout.pug
 
 block body
-	.container.main-layout
-		.content
-			block content
+	nav.navbar.navbar-expand-sm.navbar-light.bg-light
+		.container
+			span.navbar-brand Welcome, #{user.spotifyProfile.displayName || user.spotifyProfile.username}
+			button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+				span.navbar-toggler-icon
+			
+			.collapse.navbar-collapse#navbarCollapse
+				ul.navbar-nav.ml-auto
+					li.nav-item
+						a.nav-link(href="/auth/logout") Log out
+
+	block content

@@ -1,6 +1,16 @@
 extends ./layout.pug
+include ./managedPlaylists/editPlaylistForm.pug
 
 block content
-	a.logout-link(href="/auth/logout") « Log out
+	.container
+		
+		.row.my-4
+			.col
+				h4 Managed Playlists
+			.col
+				a.btn.btn-primary(href="/me/managed-playlists/new") + New managed playlist
 
-	h1 Welcome, #{user.spotifyProfile.displayName || user.spotifyProfile.username}
+		table.table
+			tbody
+				each playlist in [{},{}]
+					+editPlaylistForm(playlist) 
