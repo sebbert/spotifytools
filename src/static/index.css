@@ -1,5 +1,5 @@
 html {
-	font-size: 0.6rem;
+	/* font-size: 0.6rem; */
 }
 
 body {
@@ -12,38 +12,46 @@ body {
 }
 
 .login-button-wrapper {
-	height: 100%;
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 }
 .login-button {
+	outline: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-moz-tap-highlight-color: rgba(0, 0, 0, 0);
+	font-size: 1.1em;
 	user-select: none;
 	border: none;
-	font-weight: 900;
-	color: #1DB954;
 	text-decoration: none;
-	font-size: 5rem;
-	height: 5rem;
-	margin: inherit auto;
+	border-radius: 200px;
+	margin: 0px auto;
+	padding: 10px 40px;
 	text-align: center;
-	
+
 	display: block;
+	box-sizing: content-box;
+	transition-property: transform, background-color, color;
+	transition-duration: .1s, .1s;
+	transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 
-	box-sizing: border-box;
-
-	transition-property: transform;
-	transition-duration: .2s;
-	transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+	color: #1DB954;
+	background-color: #fff;
 }
 
 .login-button:hover,.login-button:active {
-	text-decoration: underline;
 	cursor: pointer;
+	/* background-position-x: 00px; */
+	transform: scale(1.1);
+	background-position: 0px 0px;
+	color: #fff;
+	background: #1DB954;
 }
 
 .login-button:active {
-	transform: scale(.6);
+	background: #1DB954;
+	transform: scale(0.9);
 }
 
 .logout-link {
