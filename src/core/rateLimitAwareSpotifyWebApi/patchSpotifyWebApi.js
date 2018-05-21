@@ -2,11 +2,12 @@
  * A horrible hack to patch spotify-web-api-node so that it includes the response headers in errors.
  */
 
+const WebApiError = require('spotify-web-api-node/src/webapi-error');
 const HttpManager = require("spotify-web-api-node/src/http-manager");
-const superagent = require("superagent");
 
 /* Create an error object from an error returned from the Web API */
 function _getErrorObject(defaultMessage, err) {
+	console.log(err);
 	var errorObject;
 	if (typeof err.error === 'object' && typeof err.error.message === 'string') {
 		// Web API Error format
@@ -35,22 +36,21 @@ function _getErrorObject(defaultMessage, err) {
 	return errorObject;
 };
 
-
+const ignoreCallback = () => {};
+const _makeRequest = HttpManager._makeRequest;
 HttpManager._makeRequest = function(method, options, uri, callback) {
-	let reqEnd;
+	let req, onEnd;
+	const newMethod = function(uri) {
+		req = method.call(this, uri);
+		onEnd = req.end;
+		req.end = ignoreCallback;
+		console.log(req.set);
+		return req;
+	}
 
-	const newMethod = function(...methodArgs) {
-		const req = method.apply(superagent, methodArgs);
-
-		reqEnd = req.end.bind(req);
-
-		// Disable the original completion handler
-		req.end = () => {};
-	};
-
-	original(newMethod, ...args);
-
-	reqEnd((err, res) => {
+	_makeRequest.call(this, newMethod, options, uri, ignoreCallback);
+	req.end = onEnd;
+	req.end((err, res) => {
 		const {body, headers, statusCode} = res;
 
 		if(err) {
@@ -62,5 +62,5 @@ HttpManager._makeRequest = function(method, options, uri, callback) {
 		}
 
 		return callback(null, {body, headers, statusCode});
-	})
+	});
 }
