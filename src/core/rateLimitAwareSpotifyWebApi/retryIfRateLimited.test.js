@@ -7,7 +7,7 @@ class RateLimitError extends SpotifyWebApiError {
 	constructor() {
 		super("Exceeded rate limit", 429);
 		this.headers = {
-			"Retry-After": 0.1
+			"Retry-After": 0.01
 		}
 	}
 }
