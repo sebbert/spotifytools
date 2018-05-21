@@ -56,7 +56,8 @@ function retryIfRateLimited(requestFactory, maxRetries = -1) {
 		return retry();
 	}
 
-	return requestFactory()
+	return Promise.resolve()
+	.then(requestFactory)
 	.catch((err) => {
 		const isRateLimitError =
 			err instanceof SpotifyWebApiError &&

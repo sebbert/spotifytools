@@ -30,3 +30,15 @@ it("does the thing", async (done) => {
 
 	done();
 })
+
+it("can handle functions that do not return promises", async (done) => {
+	expect(await retryIfRateLimited(() => "success")).toEqual("success");
+	done();
+});
+
+it("handles functions that throw synchronously", async (done) => {
+	const err = new Error("expected");
+	const promise = retryIfRateLimited(() => { throw err });
+	await expect(promise).rejects.toEqual(err);
+	done();
+});
