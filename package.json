@@ -7,7 +7,7 @@
 		"start": "node .",
 		"watch": "nodemon .",
 		"test": "jest --watch",
-		"repl": "node -i -e 'Object.prototype.log=function(){console.log(this)};require(\"dotenv\").config();let models;require(\"./src/connect-db\")().then(()=>{models=require(\"./src/models\");console.clear();process.stdout.write(\"Ready!\\n> \");})'"
+		"repl": "node -i -e 'require(\"dotenv\").config();let models;require(\"./src/connect-db\")().then(()=>{models=require(\"./src/models\");console.clear();process.stdout.write(\"Ready!\\n> \");})'"
 	},
 	"dependencies": {
 		"@types/jest": "^22.2.3",
