@@ -5,7 +5,8 @@
 	"main": "src/index.js",
 	"scripts": {
 		"start": "node .",
-		"watch": "nodemon ."
+		"watch": "nodemon .",
+		"repl": "node -i -e 'Object.prototype.log=function(){console.log(this)};require(\"dotenv\").config();let models;require(\"./src/connect-db\")().then(()=>{models=require(\"./src/models\");console.clear();process.stdout.write(\"Ready!\\n> \");})'"
 	},
 	"dependencies": {
 		"body-parser": "^1.18.3",
