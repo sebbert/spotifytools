@@ -13,6 +13,7 @@
 		"@types/jest": "^22.2.3",
 		"body-parser": "^1.18.3",
 		"bootstrap": "^4.1.1",
+		"compose-middleware": "^5.0.0",
 		"connect-ensure-login": "^0.1.1",
 		"connect-mongo": "^2.0.1",
 		"cookie-parser": "^1.4.3",
