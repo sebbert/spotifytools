@@ -50,7 +50,7 @@ HttpManager._makeRequest = function(method, options, uri, callback) {
 
 	original(newMethod, ...args);
 
-	req.end((err, res) => {
+	reqEnd((err, res) => {
 		const {body, headers, statusCode} = res;
 
 		if(err) {
