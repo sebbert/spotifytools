@@ -6,9 +6,11 @@
 	"scripts": {
 		"start": "node .",
 		"watch": "nodemon .",
+		"test": "jest --watch",
 		"repl": "node -i -e 'Object.prototype.log=function(){console.log(this)};require(\"dotenv\").config();let models;require(\"./src/connect-db\")().then(()=>{models=require(\"./src/models\");console.clear();process.stdout.write(\"Ready!\\n> \");})'"
 	},
 	"dependencies": {
+		"@types/jest": "^22.2.3",
 		"body-parser": "^1.18.3",
 		"connect-ensure-login": "^0.1.1",
 		"connect-mongo": "^2.0.1",
@@ -16,6 +18,7 @@
 		"dotenv": "^5.0.1",
 		"express": "^4.16.3",
 		"express-session": "^1.15.6",
+		"jest": "^22.4.4",
 		"mongoose": "^5.1.1",
 		"morgan": "^1.9.0",
 		"normalize.css": "^8.0.0",
