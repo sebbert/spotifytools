@@ -8,7 +8,6 @@ function static(urlPath, filePath, options=undefined) {
 	router.use(urlPath, express.static(filePath, options));
 }
 
-static("/normalize.css", require.resolve("normalize.css"));
 const bootstrapPackageDirPath = path.dirname(require.resolve("bootstrap/package.json"));
 static("/bootstrap", path.join(bootstrapPackageDirPath, "dist"));
 static("/jquery.js", require.resolve("jquery/dist/jquery.js"));
