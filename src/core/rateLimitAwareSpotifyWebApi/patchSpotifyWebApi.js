@@ -44,7 +44,6 @@ HttpManager._makeRequest = function(method, options, uri, callback) {
 		req = method.call(this, uri);
 		onEnd = req.end;
 		req.end = ignoreCallback;
-		console.log(req.set);
 		return req;
 	}
 
