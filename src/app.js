@@ -16,7 +16,7 @@ app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(session({
 	secret: env.require("SPOTIFYTOOLS_SESSION_SECRET"),
-	resave: true,
+	resave: false,
 	saveUninitialized: true,
 	store: new MongoStore({
 		mongooseConnection: mongoose.connection,
