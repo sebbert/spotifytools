@@ -15,7 +15,7 @@ connectDb().then(() => {
 		console.log(`Listening on ${hostname}:${port}`)
 	});
 })
-.catch(err => {
-	console.error("UNHANDLED PROMISE REJECTION\n", err);
-	process.exit(1);
+
+process.on("unhandledRejection", (err) => {
+	console.error("UNHANDLED PROMISE REJECTION:\n", err);
 });
