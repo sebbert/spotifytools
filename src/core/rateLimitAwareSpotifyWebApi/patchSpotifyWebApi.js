@@ -58,6 +58,7 @@ HttpManager._makeRequest = function(method, options, uri, callback) {
 				error: err
 			});
 			errorObject.headers = headers;
+			errorObject.body = body;
 			callback(errorObject)
 		}
 
