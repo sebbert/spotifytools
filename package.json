@@ -27,6 +27,7 @@
 		"passport": "^0.4.0",
 		"passport-spotify": "^1.0.0",
 		"pug": "^2.0.3",
+		"select2": "^4.0.6-rc.1",
 		"spotify-web-api-node": "^3.1.1"
 	},
 	"devDependencies": {

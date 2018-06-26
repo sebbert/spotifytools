@@ -1,11 +1,13 @@
 const dotenv = require("dotenv");
 dotenv.config();
-
 const env = require("./env");
-
 const connectDb = require("./connect-db");
+const scheduleScan = require("./core/scheduleScan");
 
-connectDb().then(() => {
+connectDb()
+.then(() => {
+	scheduleScan();
+
 	const app = require("./app");
 
 	const hostname = env.require("SPOTIFYTOOLS_HOSTNAME");

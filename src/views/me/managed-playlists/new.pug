@@ -1,0 +1,14 @@
+extends ../layout.pug
+
+
+block append head
+	script(src="/static/playlist-select.js")
+
+block content
+	.container
+		form(method="POST", action="/me/managed-playlists/#{playlistId}")
+			.row
+				.col
+					select.playlist-select.w-100
+				.col
+					h4 bar

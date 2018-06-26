@@ -1,16 +1,12 @@
 extends ./layout.pug
-include ./managedPlaylists/editPlaylistForm.pug
+//- include ./managedPlaylists/editPlaylistForm.pug
 
 block content
 	.container
-		
-		.row.my-4
+		.row.mb-3
 			.col
-				h4 Managed Playlists
-			.col
-				a.btn.btn-primary(href="/me/managed-playlists/new") + New managed playlist
+				p.h4.d-inline-block.mr-3 Managed Playlists
+				a.btn.btn-primary(href="/me/managed-playlists/new") + New
 
 		table.table
 			tbody
-				each playlist in [{},{}]
-					+editPlaylistForm(playlist) 
